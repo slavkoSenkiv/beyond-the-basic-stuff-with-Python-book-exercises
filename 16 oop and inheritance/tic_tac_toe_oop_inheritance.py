@@ -2,7 +2,7 @@ all_cells = list('123456789')
 current_player, next_player = 'X', 'O'
 
 
-class TTTBoard():
+class TTTBoard:
     def __init__(self):
         self._board = {}
         for space in all_cells:

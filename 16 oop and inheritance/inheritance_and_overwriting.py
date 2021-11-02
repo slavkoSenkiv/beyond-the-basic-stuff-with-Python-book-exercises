@@ -6,8 +6,8 @@ class ParentClass:
 
 
 class ChildClass(ParentClass):
-    """def parent_method(self):
-        print('Hello world from child class')"""
+    def parent_method(self):
+        print('Hello world from child class')
 
     def child_method(self):
         print('ParentClass objects don"t have this method.')
@@ -18,16 +18,21 @@ class GrandChildClass(ChildClass):
         print('Only GrandchildClass objects have this method.')
 
 
-print('\nCreate a ParentClass object and call its methods:')
+print('\nParentClass:')
 parent = ParentClass()
+parent.parent_method()
 
-
-print('\nCreate a ChildClass object and call its methods:')
+print('\nChildClass:')
 child = ChildClass()
+child.parent_method()
+child.child_method()
 
-
-print('\nCreate a GrandchildClass object and call its methods:')
+print('\nGrandchildClass:')
 grand_child = GrandChildClass()
+grand_child.parent_method()
+grand_child.child_method()
+grand_child.grand_child_method()
+
 
 
 
