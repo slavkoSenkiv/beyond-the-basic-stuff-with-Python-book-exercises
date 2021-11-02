@@ -98,13 +98,13 @@ class HintBoard(RegularBoard):
         return board_string
 
 
-"""board_type = input('enter: ')
-if board_type == '1':
+board_type = pyinputplus.inputMenu(['regular', 'mini', 'with hints'], numbered=True, prompt='pick board type:\n')
+if board_type == 'regular':
     board = RegularBoard()
-if board_type == '2':
+if board_type == 'mini':
     board = MiniBoard()
-if board_type == '3':"""
-board = HintBoard()
+if board_type == 'with hints':
+    board = HintBoard()
 
 
 print(board.get_board_string())
