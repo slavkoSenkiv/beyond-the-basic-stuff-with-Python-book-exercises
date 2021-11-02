@@ -34,7 +34,7 @@ RegularBoard
 
     def there_is_winner(self, player):
         b, p = self._board, player
-        if b['1'] == b['2'] == b['3'] == p or \
+        if      b['1'] == b['2'] == b['3'] == p or \
                 b['4'] == b['5'] == b['6'] == p or \
                 b['7'] == b['8'] == b['9'] == p or \
                 b['1'] == b['5'] == b['9'] == p or \
@@ -42,8 +42,6 @@ RegularBoard
                 b['1'] == b['4'] == b['7'] == p or \
                 b['2'] == b['5'] == b['8'] == p or \
                 b['3'] == b['6'] == b['9'] == p:
-            print(self.get_board_string())
-            print(f'{p} is winner')
             return True
         return False
 
@@ -87,21 +85,15 @@ class HintBoard(RegularBoard):
             if self._board[cell] == ' ':
                 self._board[cell] = current_player
                 if self.there_is_winner(current_player):
-                    current_player_can_win = True
-                    self._board = original_cells
+                    board_string += f'\n!!! {current_player} can win with move on {cell}'
 
             # Simulate O moving on this space:
             self._board = copy.copy(original_cells)
             if self._board[cell] == ' ':
                 self._board[cell] = next_player
                 if self.there_is_winner(next_player):
-                    next_player_can_win = True
-                    self._board = original_cells
+                    board_string += f'\n!!! {next_player} can win with move on {cell}'
 
-        if current_player_can_win:
-            board_string += f'\n{current_player} can win in one more move'
-        if next_player_can_win:
-            board_string += f'\n{next_player}can win in one more move'
         self._board = original_cells
         return board_string
 
@@ -121,6 +113,8 @@ while board.there_are_free_cells():
     if board.move_is_valid(move):
         board.update_board(move, current_player)
         if board.there_is_winner(current_player):
+            print(board.get_board_string())
+            print(f'{current_player} is winner')
             exit()
         print(board.get_board_string())
         current_player, next_player = next_player, current_player
