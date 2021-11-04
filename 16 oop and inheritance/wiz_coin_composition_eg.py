@@ -1,27 +1,42 @@
-import wizcoin
+import wiz_coin_for_composition as wizcoin
 
-purse = wizcoin.WizCoin(2, 5, 99)
-print(purse)
-print('G:', purse.galleons, 'S:', purse.sickles, 'K:', purse.knuts)
-print('total in knuts', purse.to_knuts())
-print('weight', purse.weightInGrams(), 'grams')
 
-print()
+def print_purse(purse):
+    print(f'{purse.purse_name}\n'
+          f'G:{purse.galleons} S:{purse.sickles} K:{purse.knuts}\n'
+          f'total in knuts {purse.to_knuts()}\n'
+          f'weight {purse.weightInGrams()} gr\n\n')
 
-coinJar = wizcoin.WizCoin(13, 0, 0)
-print(coinJar)
-print('G:', coinJar.galleons, 'S:', coinJar.sickles, 'K:', coinJar.knuts)
-print('total in knuts', coinJar.to_knuts())
-print('weight', coinJar.weightInGrams(), 'grams')
 
-print()
+def print_customer(customer):
+    print(f'\n{customer.name} has {customer.to_knuts()} knuts worth if money\n'
+          f'{customer.name}\'s coins weight {customer.weightInGrams()} grams')
 
-change = wizcoin.WizCoin(9, 7, 20)
-print('change.sickles', change.sickles)
+
+class WizardCustomer(wizcoin.WizCoin):
+    def __init__(self, name):
+        self.name = name
+        super().__init__('a', 0, 0, 0)
+
+
+purse = wizcoin.WizCoin('purse', 2, 5, 99)
+print_purse(purse)
+
+coin_jar = wizcoin.WizCoin('coin_jar', 13, 0, 0)
+print_purse(coin_jar)
+
+change = wizcoin.WizCoin('change', 9, 7, 20)
+print_purse(change)
+print('we are goinf to add 10 sickles ')
 change.sickles += 10
-print('change.sickles+10', change.sickles)
+print_purse(change)
 
-pile = wizcoin.WizCoin(2, 3, 31)
-print('pile.sickles', pile.sickles)
-pile.someNewAttr = 'a new attr'
-print('pile.someNewAttr ', pile.someNewAttr )
+pile = wizcoin.WizCoin('pile', 2, 3, 31)
+print_purse(pile)
+pile.some_new_attr = 'a new attr'
+print('pile.some_new_attr ', pile.some_new_attr )
+
+wizard = WizardCustomer('Alice')
+print_customer(wizard)
+
+
