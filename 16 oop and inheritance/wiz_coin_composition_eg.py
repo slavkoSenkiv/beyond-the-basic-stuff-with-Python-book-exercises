@@ -2,21 +2,21 @@ import wiz_coin_for_composition as wizcoin
 
 
 def print_purse(purse):
-    print(f'{purse.purse_name}\n'
+    print(f'{purse.name}\n'
           f'G:{purse.galleons} S:{purse.sickles} K:{purse.knuts}\n'
           f'total in knuts {purse.to_knuts()}\n'
           f'weight {purse.weightInGrams()} gr\n\n')
 
 
 def print_customer(customer):
-    print(f'\n{customer.name} has {customer.to_knuts()} knuts worth if money\n'
-          f'{customer.name}\'s coins weight {customer.weightInGrams()} grams')
+    print(f'\n{customer.name} has {customer.purse.to_knuts()} knuts worth if money\n'
+          f'{customer.name}\'s coins weight {customer.purse.weightInGrams()} grams')
 
 
-class WizardCustomer(wizcoin.WizCoin):
-    def __init__(self, name):
-        self.name = name
-        super().__init__('a', 0, 0, 0)
+class WizardCustomer:
+    def __init__(self, wizard_name):
+        self.name = wizard_name
+        self.purse = wizcoin.WizCoin('wizard_purse', 0, 0, 0)
 
 
 purse = wizcoin.WizCoin('purse', 2, 5, 99)

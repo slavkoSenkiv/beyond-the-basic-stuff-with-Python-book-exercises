@@ -3,9 +3,9 @@
 # 1 galleon = 17 sickles | 493 knuts
 
 class WizCoin():
-    def __init__(self, purse_name, galleons, sickles, knuts):
+    def __init__(self, name, galleons, sickles, knuts):
         # Create a new WizCoin object with galleons, sickles, and knuts.
-        self.purse_name = purse_name
+        self.name = name
         self.galleons = galleons
         self.sickles = sickles
         self.knuts = knuts
