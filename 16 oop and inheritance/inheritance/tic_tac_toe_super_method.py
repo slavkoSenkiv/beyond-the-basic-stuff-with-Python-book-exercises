@@ -98,13 +98,19 @@ class HintBoard(RegularBoard):
         return board_string
 
 
-board_type = pyinputplus.inputMenu(['regular', 'mini', 'with hints'], numbered=True, prompt='pick board type:\n')
+class HybridBoard(HintBoard, MiniBoard):
+    pass
+
+
+board_type = pyinputplus.inputMenu(['regular', 'mini', 'with hints', 'mini with hints'], numbered=True, prompt='pick board type:\n')
 if board_type == 'regular':
     board = RegularBoard()
 if board_type == 'mini':
     board = MiniBoard()
 if board_type == 'with hints':
     board = HintBoard()
+if board_type == 'mini with hints':
+    board = HybridBoard()
 
 
 print(board.get_board_string())

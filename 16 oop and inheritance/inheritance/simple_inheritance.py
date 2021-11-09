@@ -18,3 +18,22 @@ child = Child()
 print()
 print(parent.hair)
 print(child.hair)
+
+
+class Airplane:
+    def fly_in_the_air(self):
+        print('flying')
+
+
+class Ship:
+    def float_on_water(self):
+        print('floating')
+
+
+class FlyingBoat(Airplane, Ship):
+    pass
+
+
+sea_duck = FlyingBoat()
+sea_duck.float_on_water()
+sea_duck.fly_in_the_air()
